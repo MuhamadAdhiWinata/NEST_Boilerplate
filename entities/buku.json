@@ -1,0 +1,10 @@
+{
+  "name": "buku",
+  "id": { "type": "int", "strategy": "autoincrement" },
+  "fields": [
+    { "name": "name", "type": "string", "required": true },
+    { "name": "price", "type": "number", "required": true },
+    { "name": "stock", "type": "number", "required": true },
+    { "name": "penulis", "type": "string", "required": true }
+  ]
+}
