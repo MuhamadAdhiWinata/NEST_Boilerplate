@@ -10,14 +10,14 @@ if (!file) {
 
 // --- 1. Load and Normalize Spec ---
 const raw = JSON.parse(fs.readFileSync(file, "utf8"));
-const name = raw.name; // e.g., 'buku'
+const name = raw.name;
 const fields = Array.isArray(raw.fields) ? raw.fields : [];
 
 const idConfig = raw.id || fields.find(f => f.name === "id") || null;
 const nonIdFields = fields.filter(f => f.name !== "id");
 
-const pascal = name.charAt(0).toUpperCase() + name.slice(1); // Buku
-const camel = name.charAt(0).toLowerCase() + name.slice(1); // buku
+const pascal = name.charAt(0).toUpperCase() + name.slice(1);
+const camel = name.charAt(0).toLowerCase() + name.slice(1);
 
 // --- 2. Type Normalization Functions ---
 
@@ -44,7 +44,7 @@ function zodType(type, required) {
   else if (t === "number" || t === "int" || t === "integer" || t === "float") base = "z.number()";
   else if (t === "boolean" || t === "bool") base = "z.boolean()";
   else if (t === "date" || t === "datetime") {
-    // Menerima string tanggal dari klien dan mengubahnya menjadi Date object
+
     base = "z.string().datetime().pipe(z.coerce.date())"; 
   }
   else base = "z.any()";
@@ -111,7 +111,6 @@ export class Update${pascal}Request {
 ${modelFieldsUpdate || "  // no updatable fields"}
 }
 
-// 💡 NEW: Request DTO untuk pagination
 export class List${pascal}Request {
   limit?: number;
   offset?: number;
